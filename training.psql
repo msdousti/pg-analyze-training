@@ -1,0 +1,67 @@
+\x auto
+
+\if :{?run_before}
+\else
+  \! clear
+  \! echo "\033[1;35m$(figlet How to count without counting in Postgres)\033[0m"
+  \prompt x
+  \set run_before true
+\endif
+
+\! clear
+\echo '\033[1;35mMenu:\033[0m'
+\echo '   0 – Intro to query planner'
+\echo '   1 – Gathering statistics'
+\echo '   2 – Interlude: A utility function'
+\echo '   3 – Histograms'
+\echo '   4 – Dead row killer: vacuum'
+\echo '   5 – Stale stats: The wrong plan'
+\echo '   6 – Multi-column stats'
+\echo '   q – quit'
+\echo
+\echo Type your choice and press <Enter>:
+\prompt topic
+\set topic '\'' :topic '\''
+select
+:topic::text = '0' as choice_is_0,
+:topic::text = '1' as choice_is_1,
+:topic::text = '2' as choice_is_2,
+:topic::text = '3' as choice_is_3,
+:topic::text = '4' as choice_is_4,
+:topic::text = '5' as choice_is_5,
+:topic::text = '6' as choice_is_6,
+:topic::text = 'q' as choice_is_q\gset
+
+\! clear
+
+\if :choice_is_q
+  \! clear
+  \! cowsay Bye  
+\elif :choice_is_0
+  \ir ./topics/0.sql
+  \ir ./training.psql
+\elif :choice_is_1
+  \ir ./topics/1.sql
+  \ir ./training.psql
+\elif :choice_is_2
+  \ir ./topics/2.sql
+  \ir ./training.psql
+\elif :choice_is_3
+  \ir ./topics/3.sql
+  \ir ./training.psql
+\elif :choice_is_4
+  \ir ./topics/4.sql
+  \ir ./training.psql
+\elif :choice_is_5
+  \ir ./topics/5.sql
+  \ir ./training.psql
+\elif :choice_is_6
+  \ir ./topics/6.sql
+  \ir ./training.psql
+
+\else
+  \echo
+  \echo '\033[1;31mError:\033[0m Unknown option! Try again.'
+  \echo
+  \ir ./training.psql
+\endif
