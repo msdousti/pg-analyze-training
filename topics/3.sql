@@ -74,7 +74,9 @@ analyze verbose t;
 \prompt x
 \! clear
 
-select * from pg_stats 
+select
+  histogram_bounds
+from pg_stats 
   where tablename = 't';
 
 \echo\echo
