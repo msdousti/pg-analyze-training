@@ -41,7 +41,7 @@ select * from c('select * from t where n < 0.5');
 \echo select
 \echo   unnest(histogram_bounds::text::float8[]) as histogram_bounds
 \echo from pg_stats
-\echo where tablename = 't';
+\echo 'where tablename = \'t\';'
 
 \echo\echo
 \prompt x
