@@ -14,7 +14,7 @@
 \echo '   1 – Gathering statistics'
 \echo '   2 – Interlude: A utility function'
 \echo '   3 – Histograms'
-\echo '   4 – Dead row killer: vacuum'
+\echo '   4 – Dead row ripper: vacuum'
 \echo '   5 – Stale stats: The wrong plan'
 \echo '   6 – Multi-column stats'
 \echo '   q – quit'
