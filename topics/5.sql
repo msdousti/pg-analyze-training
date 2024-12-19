@@ -8,30 +8,23 @@ drop table if exists t;
 
 \echo\echo
 
-create table t(n int) 
+create table t(n int primary key)
   with (autovacuum_enabled = off);
 
 \echo\echo
 
 insert into t values (0), (1), (2);
 
-\prompt x
-\! clear
-
 analyze verbose t;
 
 \echo\echo
 
-create index on t(n);
-
-\echo\echo
-
-insert into t select generate_series(0,999);
+insert into t select generate_series(3,999);
 
 \prompt x
 \! clear
 
-select * from c('select * from t where n=5');
+select scan from c('select * from t where n=5');
 
 \echo\echo
 
@@ -39,7 +32,7 @@ analyze t;
 
 \echo\echo
 
-select * from c('select * from t where n=5');
+select scan from c('select * from t where n=5');
 
 \echo\echo
 
