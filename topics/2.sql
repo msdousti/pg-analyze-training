@@ -6,17 +6,12 @@ explain (analyze, format json)
 \prompt x
 \! clear
 
-drop type if exists pln cascade;
-
-\echo\echo
-
-create type pln as (scan text, estimate text, actual text);
-
-\echo\echo
-
 -- https://wiki.postgresql.org/wiki/Count_estimate
-create or replace function c(query text)
-returns pln language plpgsql as $$
+create or replace function c(
+  in query text,
+  out scan text, out estimate text, out actual text
+)
+returns record language plpgsql as $$
 declare
   jsn jsonb;
   plan jsonb;
@@ -24,9 +19,13 @@ begin
   execute format('explain (analyze, format json) %s', query)
     into jsn;
   select jsn->0->'Plan' into plan;
-  return row(plan->>'Node Type', plan->>'Plan Rows', plan->>'Actual Rows');
+  
+  scan := plan->>'Node Type';
+  estimate := plan->>'Plan Rows';
+  actual := plan->>'Actual Rows';
 end;
 $$;
+
 
 \prompt x
 
