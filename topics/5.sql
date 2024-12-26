@@ -70,9 +70,8 @@ show autovacuum_naptime;
 
 drop table if exists t;
 
-\! clear
-
 \echo\echo
+\! clear
 
 create table t(n) 
   with (
@@ -89,6 +88,8 @@ select last_analyze, last_autoanalyze
   where schemaname = 'analyze_training' and relname = 't';
 
 \prompt x
+\echo\echo
+\! clear
 
 select last_analyze, last_autoanalyze
   from pg_stat_user_tables

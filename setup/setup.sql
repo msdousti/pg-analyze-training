@@ -1,0 +1,25 @@
+drop schema if exists analyze_training cascade;
+
+create schema analyze_training;
+
+set search_path to analyze_training;
+
+-- https://wiki.postgresql.org/wiki/Count_estimate
+create or replace function c(
+  in query text,
+  out scan text, out estimate text, out actual text
+)
+returns record language plpgsql as $$
+declare
+  jsn jsonb;
+  plan jsonb;
+begin
+  execute format('explain (analyze, format json) %s', query)
+    into jsn;
+  select jsn->0->'Plan' into plan;
+  
+  scan := plan->>'Node Type';
+  estimate := plan->>'Plan Rows';
+  actual := plan->>'Actual Rows';
+end;
+$$;
