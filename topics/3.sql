@@ -49,7 +49,7 @@ select * from c('select * from t where n < 0.5');
 select
   unnest(histogram_bounds::text::float8[]) as histogram_bounds
 from pg_stats
-where tablename = 't';
+where schemaname = 'analyze_training' and tablename = 't';
 
 \prompt x
 
@@ -77,7 +77,7 @@ analyze verbose t;
 select
   histogram_bounds
 from pg_stats 
-  where tablename = 't';
+  where schemaname = 'analyze_training' and tablename = 't';
 
 \echo\echo
 
@@ -105,7 +105,7 @@ analyze verbose t;
 \echo\echo
 
 select array_length(histogram_bounds, 1) from pg_stats 
-  where tablename = 't';
+  where schemaname = 'analyze_training' and tablename = 't';
 
 \prompt x
 \! clear
@@ -129,7 +129,7 @@ analyze verbose t;
 \echo\echo
 
 select array_length(histogram_bounds, 1) from pg_stats 
-  where tablename = 't';
+  where schemaname = 'analyze_training' and tablename = 't';
 
 
 \prompt x

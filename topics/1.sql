@@ -13,13 +13,13 @@ insert into t
 
 
 select reltuples from pg_class 
-  where relname = 't';
+  where oid = 't'::regclass;
 
 \prompt x
 \! clear
 
 select * from pg_stats 
-  where tablename = 't';
+  where schemaname = 'analyze_training' and tablename = 't';
 
 \prompt x
 \! clear
@@ -29,13 +29,13 @@ analyze t;
 \echo\echo
 
 select reltuples from pg_class 
-  where relname = 't';
+  where oid = 't'::regclass;
 
 \prompt x
 \! clear
 
 select * from pg_stats 
-  where tablename = 't';
+  where schemaname = 'analyze_training' and tablename = 't';
 
 \prompt x
 \! clear

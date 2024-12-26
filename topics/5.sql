@@ -86,13 +86,13 @@ insert into t select mod(generate_series(0,99999),4);
 
 select last_analyze, last_autoanalyze 
   from pg_stat_user_tables 
-  where relname = 't';
+  where oid = 't'::regclass;
 
 \prompt x
 
 select last_analyze, last_autoanalyze 
   from pg_stat_user_tables 
-  where relname = 't';
+  where oid = 't'::regclass;
 
 \prompt x
 

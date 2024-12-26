@@ -1,5 +1,9 @@
 \x auto
 
+drop schema if exists analyze_training cascade;
+create schema analyze_training;
+set search_path to analyze_training;
+
 \if :{?run_before}
 \else
   \! clear
@@ -35,6 +39,7 @@ select
 \! clear
 
 \if :choice_is_q
+  drop schema if exists analyze_training cascade;
   \! clear
   \! cowsay Bye  
 \elif :choice_is_0
