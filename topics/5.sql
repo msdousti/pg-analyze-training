@@ -14,7 +14,9 @@ create table t(n int primary key)
 
 insert into t values (0), (1), (2);
 
-analyze verbose t;
+\echo\echo
+
+analyze t;
 
 \echo\echo
 
@@ -23,15 +25,17 @@ insert into t select generate_series(3, 999);
 \prompt x
 \! clear
 
-select scan from c('select * from t where n=5');
+select scan from c('select * from t where n<5');
 
+\prompt x
 \echo\echo
 
 analyze t;
 
+\prompt x
 \echo\echo
 
-select scan from c('select * from t where n=5');
+select scan from c('select * from t where n<5');
 
 \echo\echo
 
@@ -63,9 +67,10 @@ select pg_reload_conf();
 show autovacuum_naptime;
 
 \prompt x
-\! clear
 
 drop table if exists t;
+
+\! clear
 
 \echo\echo
 

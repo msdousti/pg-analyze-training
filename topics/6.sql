@@ -8,12 +8,12 @@ create table t(n, m)
   as select mod(n, 2), mod(n, 4)
   from generate_series(1, 1000) as n;
 
-\prompt x
-\! clear
+\echo\echo
 
 analyze t;
 
-\echo\echo
+\prompt x
+\! clear
 
 select * from c('select * from t where n=1');
 
@@ -21,6 +21,7 @@ select * from c('select * from t where n=1');
 
 select * from c('select * from t where m=1');
 
+\prompt x
 \echo\echo
 
 select * from c('select * from t where n=1 and m=1');
