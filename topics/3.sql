@@ -6,25 +6,47 @@ drop table if exists t;
 
 create table t(n) 
   with (autovacuum_enabled = off)
-  as select random() from generate_series(0, 999999);
+  as select generate_series(1, i)
+     from generate_series(1, 1000) as i;
 
 \prompt x
 \echo\echo
 
-analyze verbose t;
+select n, count(*) from t
+group by n order by 1;
 
 \prompt x
 \! clear
 
-select * from c('select * from t where n < 0.5');
+select 
+  percentile_cont(0.5) within group (order by n) as median
+from t;
 
+\prompt x
+
+select 
+  count(*) filter (where n <= 294) 
+  /
+  count(*)::numeric
+  as ratio 
+from t;
+
+\prompt x
+\! clear
+
+analyze verbose t;
+
+\prompt x
+select * from c('select * from t where n <= 294');
+
+\prompt x
 \echo\echo
 
 analyze verbose t;
 
 \echo\echo
 
-select * from c('select * from t where n < 0.5');
+select * from c('select * from t where n <= 294');
 
 \prompt x
 \! clear
@@ -32,7 +54,7 @@ select * from c('select * from t where n < 0.5');
 \echo select
 \echo   unnest(histogram_bounds::text::float8[]) as histogram_bounds
 \echo from pg_stats
-\echo 'where tablename = \'t\';'
+\echo 'where schemaname = \'analyze_training\' and tablename = \'t\';'
 
 \echo\echo
 \prompt x
@@ -81,8 +103,11 @@ select min(n),
 \prompt x
 \! clear
 
-select * from c('select * from t where n < 0.5');
-select * from c('select * from t where n < 0.2');
+select * from c('select * from t where n <= 294');
+
+\echo\echo
+
+select * from c('select * from t where n < 700');
 
 \prompt x
 \! clear
@@ -95,28 +120,31 @@ analyze verbose t;
 
 \echo\echo
 
-select array_length(histogram_bounds, 1) from pg_stats 
-  where schemaname = 'analyze_training' and tablename = 't';
+select * from c('select * from t where n < 700');
 
 \prompt x
 \! clear
 
 RESET default_statistics_target;
 
+\prompt x
 \echo\echo
 
 show default_statistics_target;
 
+\prompt x
 \echo\echo
 
 -- In PG17, you can use "default" instead of -1
 -- Setting it to 0 disables statistics gathering on this column
 alter table t alter column n set statistics -1;
 
+\prompt x
 \echo\echo
 
 analyze verbose t;
 
+\prompt x
 \echo\echo
 
 select array_length(histogram_bounds, 1) from pg_stats 
