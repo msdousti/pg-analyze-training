@@ -1,17 +1,10 @@
-\! clear
-
 drop table if exists t;
 
-\echo\echo
-
-create table t(n int) 
-  with (autovacuum_enabled = off);
-
-\prompt x
 \! clear
 
-insert into t 
-  select mod(generate_series(0,999),5);
+create table t(n)
+  with (autovacuum_enabled = off)
+  as select mod(generate_series(0, 999), 5);
 
 \prompt x
 \! clear

@@ -1,3 +1,11 @@
+drop table if exists t;
+
+\! clear
+
+create table t(n)
+  with (autovacuum_enabled = off)
+  as select mod(generate_series(0, 999), 5);
+
 \! clear
 
 explain (analyze, format json) 

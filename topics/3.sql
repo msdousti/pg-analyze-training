@@ -1,20 +1,12 @@
 reset default_statistics_target;
-\! clear
 
 drop table if exists t;
 
-\echo\echo
+\! clear
 
-create table t(n float8) 
-  with (autovacuum_enabled = off);
-
-\echo\echo
-
-\echo Inserting 1M rows... This takes a bit of time
-\echo
-
-insert into t 
-  select random() from generate_series(0,999999);
+create table t(n) 
+  with (autovacuum_enabled = off)
+  as select random() from generate_series(0, 999999);
 
 \prompt x
 \echo\echo
