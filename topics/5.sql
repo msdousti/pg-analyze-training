@@ -58,8 +58,6 @@ alter system set autovacuum_naptime = '1s';
 
 select pg_reload_conf();
 
-select pg_sleep(1);
-
 \echo\echo
 
 show autovacuum_naptime;

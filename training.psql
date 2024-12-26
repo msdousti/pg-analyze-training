@@ -1,15 +1,14 @@
 \x auto
 
-drop schema if exists analyze_training cascade;
-create schema analyze_training;
-set search_path to analyze_training;
-
 \if :{?run_before}
 \else
   \! clear
   \! echo "\033[1;35m$(figlet How to count without counting in Postgres)\033[0m"
   \prompt x
   \set run_before true
+  drop schema if exists analyze_training cascade;
+  create schema analyze_training;
+  set search_path to analyze_training;
 \endif
 
 \! clear

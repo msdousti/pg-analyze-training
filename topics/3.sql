@@ -13,11 +13,10 @@ create table t(n float8)
 \echo Inserting 1M rows... This takes a bit of time
 \echo
 
-\prompt x
-
 insert into t 
   select random() from generate_series(0,999999);
 
+\prompt x
 \echo\echo
 
 analyze verbose t;
