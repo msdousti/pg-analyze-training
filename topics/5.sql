@@ -39,9 +39,9 @@ select scan from c('select * from t where n=5');
 \prompt x
 \! clear
 
-\echo ps -ef | grep -v grep | grep postgres
+\echo pgrep -fal postgres
 \echo\echo
-\! ps -ef | grep -v grep | grep postgres
+\! pgrep -fal postgres
 
 \prompt x
 \! clear
