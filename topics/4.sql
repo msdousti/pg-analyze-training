@@ -1,6 +1,6 @@
 \! clear
 
-delete from t where n < 0.2;
+delete from t where n <= 294;
 
 \echo\echo
 
@@ -22,7 +22,7 @@ analyze verbose t;
 \prompt x
 
 \! clear
-\! cowsay combine them!
+\echo combine them! :cow
 
 \echo\echo\echo
 \prompt x

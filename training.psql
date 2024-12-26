@@ -36,7 +36,7 @@ select
 \if :choice_is_q
   drop schema if exists analyze_training cascade;
   \! clear
-  \! cowsay Bye  
+  \echo Bye :cow  
 \elif :choice_is_0
   \ir ./topics/0.sql
   \ir ./training.psql
