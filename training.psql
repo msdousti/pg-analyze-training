@@ -16,9 +16,12 @@
 \echo '   4 – Dead row ripper: vacuum'
 \echo '   5 – Stale stats: The wrong plan'
 \echo '   6 – Multi-column stats'
+\echo '   7 – Summary'
 \echo '   q – quit'
 \echo
 \echo Type your choice and press <Enter>:
+\! ./setup/showimg.sh ./img/url-qr.png -w30 -x50
+
 \prompt topic
 \set topic '\'' :topic '\''
 select
@@ -29,6 +32,7 @@ select
 :topic::text = '4' as choice_is_4,
 :topic::text = '5' as choice_is_5,
 :topic::text = '6' as choice_is_6,
+:topic::text = '7' as choice_is_7,
 :topic::text = 'q' as choice_is_q\gset
 
 \! clear
@@ -57,6 +61,9 @@ select
   \ir ./training.psql
 \elif :choice_is_6
   \ir ./topics/6.sql
+  \ir ./training.psql
+\elif :choice_is_7
+  \ir ./topics/7.sql
   \ir ./training.psql
 
 \else

@@ -125,7 +125,7 @@ select * from c('select * from t where n < 700');
 \prompt x
 \! clear
 
-RESET default_statistics_target;
+reset default_statistics_target;
 
 \prompt x
 \echo\echo
