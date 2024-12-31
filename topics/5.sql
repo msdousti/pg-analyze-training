@@ -42,9 +42,9 @@ select scan from c('select * from t where n<5');
 \prompt x
 \! clear
 
-\echo pgrep -fal postgres
+\echo pstree $(pgrep -xo postgres)
 \echo\echo
-\! pgrep -fal postgres
+\! pstree $(pgrep -xo postgres)
 
 \prompt x
 \! clear
@@ -81,21 +81,24 @@ create table t(n)
   )
   as select mod(generate_series(0, 99999), 4);
 
+\prompt x
 \echo\echo
 
-select last_analyze, last_autoanalyze
+select n_mod_since_analyze, last_analyze, last_autoanalyze, 
+       analyze_count, autoanalyze_count
   from pg_stat_user_tables
   where schemaname = 'analyze_training' and relname = 't';
 
 \prompt x
 \echo\echo
+
+select n_mod_since_analyze, last_analyze, last_autoanalyze, 
+       analyze_count, autoanalyze_count
+  from pg_stat_user_tables
+  where schemaname = 'analyze_training' and relname = 't';
+
+\prompt x
 \! clear
-
-select last_analyze, last_autoanalyze
-  from pg_stat_user_tables
-  where schemaname = 'analyze_training' and relname = 't';
-
-\prompt x
 
 select * from c('select * from t where n=3');
 
