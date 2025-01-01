@@ -2,6 +2,22 @@ reset default_statistics_target;
 
 drop table if exists t;
 
+create or replace function beautify (arr anyarray, per_line int)
+    returns setof text
+    language plpgsql
+    immutable strict
+    as $$
+declare
+    i integer := array_lower(arr, 1);
+    len constant integer := array_upper(arr, 1);
+begin
+    while i <= len loop
+        return next array_to_string(arr[i:i + per_line - 1], ',');
+        i := i + per_line;
+    end loop;
+end
+$$;
+
 \! clear
 
 create table t(n) 
@@ -51,16 +67,8 @@ select * from c('select * from t where n <= 294');
 \prompt x
 \! clear
 
-\echo select
-\echo   unnest(histogram_bounds::text::float8[]) as histogram_bounds
-\echo from pg_stats
-\echo 'where schemaname = \'analyze_training\' and tablename = \'t\';'
-
-\echo\echo
-\prompt x
-
 select
-  unnest(histogram_bounds::text::float8[]) as histogram_bounds
+  beautify(histogram_bounds::text::int[], 20) as histogram_bounds
 from pg_stats
 where schemaname = 'analyze_training' and tablename = 't';
 
