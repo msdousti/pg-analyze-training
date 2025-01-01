@@ -26,10 +26,10 @@ create table t(n)
      from generate_series(1, 1000) as i;
 
 \prompt x
-\echo\echo
+\! clear
 
-select n, count(*) from t
-group by n order by 1;
+select n, count(*) from t group by n order by 1 limit 5;
+select n, count(*) from t group by n order by 1 offset 995 limit 5;
 
 \prompt x
 \! clear
@@ -148,7 +148,7 @@ show default_statistics_target;
 alter table t alter column n set statistics -1;
 
 \prompt x
-\echo\echo
+\! clear
 
 analyze verbose t;
 
