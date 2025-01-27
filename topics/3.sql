@@ -25,11 +25,7 @@ create table t(n)
   as select generate_series(1, i)
      from generate_series(1, 1000) as i;
 
-\prompt x
-\! clear
-
-select n, count(*) from t group by n order by 1 limit 5;
-select n, count(*) from t group by n order by 1 offset 995 limit 5;
+\! ./setup/showimg.sh ./img/histogram.png -w50 -x50
 
 \prompt x
 \! clear
@@ -70,7 +66,7 @@ select * from c('select * from t where n <= 294');
 select
   beautify(histogram_bounds::text::int[], 20) as histogram_bounds
 from pg_stats
-where schemaname = 'analyze_training' and tablename = 't';
+where tablename = 't';
 
 \prompt x
 
@@ -98,7 +94,7 @@ analyze verbose t;
 select
   histogram_bounds
 from pg_stats 
-  where schemaname = 'analyze_training' and tablename = 't';
+  where tablename = 't';
 
 \echo\echo
 
@@ -156,7 +152,7 @@ analyze verbose t;
 \echo\echo
 
 select array_length(histogram_bounds, 1) from pg_stats 
-  where schemaname = 'analyze_training' and tablename = 't';
+  where tablename = 't';
 
 
 \prompt x

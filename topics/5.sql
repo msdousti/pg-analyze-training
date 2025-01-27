@@ -87,7 +87,7 @@ create table t(n)
 select n_mod_since_analyze, last_analyze, last_autoanalyze, 
        analyze_count, autoanalyze_count
   from pg_stat_user_tables
-  where schemaname = 'analyze_training' and relname = 't';
+  where relname = 't';
 
 \prompt x
 \echo\echo
@@ -95,7 +95,7 @@ select n_mod_since_analyze, last_analyze, last_autoanalyze,
 select n_mod_since_analyze, last_analyze, last_autoanalyze, 
        analyze_count, autoanalyze_count
   from pg_stat_user_tables
-  where schemaname = 'analyze_training' and relname = 't';
+  where relname = 't';
 
 \prompt x
 \! clear

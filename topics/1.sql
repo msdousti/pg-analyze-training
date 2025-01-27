@@ -15,7 +15,7 @@ select reltuples from pg_class
 \! clear
 
 select * from pg_stats 
-  where schemaname = 'analyze_training' and tablename = 't';
+  where tablename = 't';
 
 \prompt x
 \! clear
@@ -31,7 +31,7 @@ select reltuples from pg_class
 \! clear
 
 select * from pg_stats 
-  where schemaname = 'analyze_training' and tablename = 't';
+  where tablename = 't';
 
 \prompt x
 \! clear

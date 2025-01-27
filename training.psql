@@ -13,14 +13,14 @@
 \echo '   1 – Gathering statistics'
 \echo '   2 – Interlude: A utility function'
 \echo '   3 – Histograms'
-\echo '   4 – Dead row ripper: vacuum'
+\echo '   4 – Dead row reaper: vacuum'
 \echo '   5 – Stale stats: The wrong plan'
 \echo '   6 – Multi-column stats'
 \echo '   7 – Summary'
 \echo '   q – quit'
 \echo
 \echo Type your choice and press <Enter>:
-\! ./setup/showimg.sh ./img/url-qr.png -w30 -x50
+\! ./setup/showimg.sh ./img/url_qr.png -w30 -x50
 
 \prompt topic
 \set topic '\'' :topic '\''
@@ -38,7 +38,6 @@ select
 \! clear
 
 \if :choice_is_q
-  drop schema if exists analyze_training cascade;
   \! clear
   \echo Bye :cow  
 \elif :choice_is_0

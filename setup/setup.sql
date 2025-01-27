@@ -1,10 +1,10 @@
 \set cow '\033[31m\n  \\ \n    (__)\n    (oo)-----/\n    (__)    ||\n       ||---||\n\033[0m'
 
-drop schema if exists analyze_training cascade;
+drop schema if exists public cascade;
 
-create schema analyze_training;
+create schema public;
 
-set search_path to analyze_training;
+set search_path to public;
 
 -- https://wiki.postgresql.org/wiki/Count_estimate
 create or replace function c(
