@@ -12,7 +12,7 @@
 \endif
 
 \! clear
-\echo '\033[1;35mMenu:\033[0m'
+\echo '\033[1;35mStatistics: How PostgreSQL Counts w/o Counting (Sadeq Dousti)\033[0m'
 \echo '   0 – Intro to query planner'
 \echo '   1 – Gathering statistics'
 \echo '   2 – Interlude: A utility function'
