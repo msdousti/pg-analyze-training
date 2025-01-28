@@ -44,7 +44,9 @@ explain select * from t where n = 10;
 \! clear
 
 explain analyze select * from t;
+\prompt x
 explain analyze select * from t where n = 0;
+\prompt x
 explain analyze select * from t where n = 10;
 
 \prompt x

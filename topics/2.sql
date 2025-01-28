@@ -6,8 +6,7 @@ create table t(n)
 
 \! clear
 
-explain (analyze, format json) 
-  select * from t;
+explain (analyze, format json) select * from t;
 
 \prompt x
 \! clear
