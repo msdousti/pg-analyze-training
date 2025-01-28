@@ -1,5 +1,7 @@
-\! ./setup/showimg.sh ./img/additional_reading.png
+\! viu ./img/additional_reading.png -w200
 \prompt x
 
-\! ./setup/showimg.sh ./img/key_takeaways.png
+\! clear
+
+\! viu ./img/key_takeaways.png -w200
 \prompt x

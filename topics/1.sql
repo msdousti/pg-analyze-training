@@ -9,7 +9,7 @@ create table t(n)
 \echo\echo
 
 select reltuples from pg_class 
-  where oid = 't'::regclass;
+  where relname = 't';
 
 \prompt x
 \! clear
@@ -25,7 +25,7 @@ analyze t;
 \echo\echo
 
 select reltuples from pg_class 
-  where oid = 't'::regclass;
+  where relname = 't';
 
 \prompt x
 \! clear

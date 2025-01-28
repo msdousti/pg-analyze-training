@@ -1,9 +1,6 @@
 docker compose -f docker/docker-compose.yaml up -d
 
-export PGPASSWORD=postgres_analyze_training
+export CHECK="while ! pg_isready &> /dev/null; do echo 'Waiting for docker...'; sleep 1; done"
+export CMD="psql -U postgres -ef training.psql"
 
-while ! psql -h localhost -p 54320 -ef training.psql 2> /dev/null
-do
-	echo 'Waiting for docker...'
-	sleep 1
-done;
+docker exec -it pg_analyze sh -c "cd /training; $CHECK; $CMD"

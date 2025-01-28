@@ -1,3 +1,7 @@
+\pset border 2
+\pset linestyle unicode
+\pset null 'Ø'
+
 \x auto
 
 \if :{?run_before}
@@ -20,7 +24,7 @@
 \echo '   q – quit'
 \echo
 \echo Type your choice and press <Enter>:
-\! ./setup/showimg.sh ./img/url_qr.png -w30 -x50
+\! viu ./img/url_qr.png -w80 -x50
 
 \prompt topic
 \set topic '\'' :topic '\''

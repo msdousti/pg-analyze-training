@@ -25,7 +25,7 @@ create table t(n)
   as select generate_series(1, i)
      from generate_series(1, 1000) as i;
 
-\! ./setup/showimg.sh ./img/histogram.png -w50 -x50
+\! viu ./img/histogram.png -w150 -x50
 
 \prompt x
 \! clear

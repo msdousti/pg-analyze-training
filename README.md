@@ -7,12 +7,12 @@
 
 # How To
 
-Just run `start.sh`. It starts a PostgreSQL Docker container, and then runs the tutorial on it.
+Just run `start.sh`. It starts a PostgreSQL Docker container using `docker compose`, and then runs the tutorial on it.
 
 <img align="left" src="./img/exclamation.png" width="50">
-<i>If you don't have Docker, you can adapt <code>start.sh</code> to connect to your favorite PostgreSQL server, but this is NOT
-RECOMMENDED unless you have a playground instance. This is because the scripts drop and recreate some objects such as
-the <code>public</code> schema!</i>
+<i>If you don't have Docker, you can adapt <code>start.sh</code> to connect to your favorite PostgreSQL server, 
+but this is NOT RECOMMENDED unless you have a playground instance. This is because the scripts drop and recreate 
+some objects such as the <code>public</code> schema!</i>
 
 ----
 

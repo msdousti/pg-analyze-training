@@ -17,7 +17,7 @@ explain select * from t where n = 10;
 \! clear
 
 select reltuples from pg_class 
-  where oid = 't'::regclass;
+  where relname = 't';
 
 \prompt x
 \! clear
@@ -28,7 +28,7 @@ create index t_n_idx on t(n);
 \! clear
 
 select reltuples from pg_class 
-  where oid = 't'::regclass;
+  where relname = 't';
 
 \prompt x
 \! clear
