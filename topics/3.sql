@@ -31,7 +31,7 @@ create table t(n)
 \! clear
 
 select 
-  percentile_cont(0.5) within group (order by n) as median
+  percentile_disc(0.5) within group (order by n) as median
 from t;
 
 \prompt x
@@ -99,7 +99,7 @@ from pg_stats
 \echo\echo
 
 select min(n), 
-  percentile_cont(0.5) 
+  percentile_disc(0.5) 
     within group (order by n) as median,
   max(n)
   from t;

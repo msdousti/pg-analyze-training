@@ -1,4 +1,4 @@
-\set cow '\033[31m\n  \\ \n    (__)\n    (oo)-----/\n    (__)    ||\n       ||---||\n\033[0m'
+\set elephant '\033[31m\n       _    \\\n      ( \\--,/)\n  ,---\\ ` \'_/  \n /( ___\'--/`    \n  |_|\\ |_|\\ \033[0m'
 
 drop schema if exists public cascade;
 

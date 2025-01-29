@@ -43,7 +43,7 @@ select
 
 \if :choice_is_q
   \! clear
-  \echo Bye :cow  
+  \echo Bye :elephant  
 \elif :choice_is_0
   \ir ./topics/0.sql
   \ir ./training.psql

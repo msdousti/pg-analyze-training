@@ -29,7 +29,7 @@ select * from c('select * from t where n=1 and m=1');
 \prompt x
 \! clear
 
-\echo Index will not help! :cow
+\echo Index will not help! :elephant
 
 \prompt x
 \echo\echo

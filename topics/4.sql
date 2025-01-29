@@ -22,7 +22,7 @@ analyze verbose t;
 \prompt x
 
 \! clear
-\echo combine them! :cow
+\echo combine them! :elephant
 
 \echo\echo\echo
 \prompt x
